@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Networking;
 public class Player : MonoBehaviour
 {
     private bool mLeft;
     private bool mRight;
     [SerializeField]
     private float playerSpeed;
-
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
 	// Use this for initialization
 	void Start ()
     {
@@ -33,6 +34,19 @@ public class Player : MonoBehaviour
 
     }
 
+    void Fireball()
+    {
+        
+        var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+   
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.right * 6;
+
+        Destroy(bullet, 2.0f);
+        
+        
+    }
+
+
     public void leftDown()
     {
         mLeft = true;
@@ -51,5 +65,10 @@ public class Player : MonoBehaviour
     public void rightUp()
     {
         mRight = false;
+    }
+
+    public void Fireb()
+    {
+        Fireball();
     }
 }
