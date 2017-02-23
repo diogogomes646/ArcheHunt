@@ -14,11 +14,11 @@ public class Fireball : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         fSpeed = player.GetComponent<Player>().projSpeed;
 
-        if (player.GetComponent<SpriteRenderer>().flipX == true)
+        if (player.GetComponent<SpriteRenderer>().flipX == false)
         {
-            dir = Vector2.right;
+            dir = Vector2.left;
             GetComponent<SpriteRenderer>().flipX = true;        }
-        else { dir = Vector2.left; }
+        else { dir = Vector2.right; }
 	}
 	
 	// Update is called once per frame
