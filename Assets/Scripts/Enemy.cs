@@ -13,9 +13,6 @@ public class Enemy : MonoBehaviour
 
     private int maxHealth;
 
-
-
-
     public GameObject player;
     public GameObject gameManager;
 
@@ -37,5 +34,9 @@ public class Enemy : MonoBehaviour
 
         }
 
+    }
+    public void takeDamage(int damage)
+    {
+        eHealth -= damage;
     }
 }
