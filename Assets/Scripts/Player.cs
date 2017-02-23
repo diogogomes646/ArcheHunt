@@ -8,8 +8,9 @@ public class Player : MonoBehaviour
     private bool mRight;
     [SerializeField]
     private float playerSpeed;
-    public GameObject bulletPrefab;
-    public Transform bulletSpawn;
+    public float projSpeed;
+    public GameObject fireballPrefab;
+    public Transform projSpawn;
 
     [SerializeField]
     private Stat health;
@@ -82,12 +83,9 @@ public class Player : MonoBehaviour
 
     void Fireball()
     {
-        
-        var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-   
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.right * 6;
 
-        Destroy(bullet, 2.0f);
+        GameObject proj = Instantiate(fireballPrefab, projSpawn.position, projSpawn.rotation);
+        Destroy(proj, 2.0f);
         
         
     }
