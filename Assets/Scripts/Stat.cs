@@ -11,7 +11,6 @@ public class Stat
     [SerializeField]
     private Bar bar;
 
-  
     [SerializeField]
     private float maxVal;
 

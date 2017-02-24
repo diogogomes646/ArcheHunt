@@ -7,8 +7,9 @@ public class Fireball : MonoBehaviour
     public GameObject player;
     private float fSpeed;
     private Vector2 dir;
-    public float fireballdamanage;
+    public int fireballDamage;
 	// Use this for initialization
+
 	void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -28,14 +29,12 @@ public class Fireball : MonoBehaviour
 
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.name == "Enemy")
         {
+            other.gameObject.GetComponent<Enemy>().takeDamage(fireballDamage);
             Destroy(this.gameObject);
-
-           // GameObject.Find("Enemy").GetComponent<Enemy>().takeDamage -= fireballdamanage)
-          
         }
     }
 }

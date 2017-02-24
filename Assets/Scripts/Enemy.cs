@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    public int eHealth;
+    private int eHealth;
     private int eStrenght;
     [SerializeField]
     private float eSpeed;
@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     {
         maxHealth = 50;
         eHealth = maxHealth;
+        eStrenght = 10;
 
         eSpeed = 2.0f;
         eRange.Set(10, 10);
@@ -29,11 +30,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) <= eRange.x)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, eSpeed * Time.deltaTime);
-
-        }
+        checkHealth();
+        chasePlayer();
 
     }
 
@@ -41,22 +39,31 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            GameObject.Find("Player").GetComponent<Player>().health.CurrentValue -= 10;
+            GameObject.Find("Player").GetComponent<Player>().takeHealth(eStrenght);
           
         }
-
-    
     }
 
-    void UpdateHealth()
-    {
-
-    }
     public void takeDamage(int damage)
     {
         eHealth -= damage;
-        UpdateHealth();
     }
 
+    void checkHealth()
+    {
+        if (eHealth <= 0)
+        {
+            player.GetComponent<Player>().addKill();
+            Destroy(this.gameObject);
+        }
+    }
 
+    private void chasePlayer()
+    {
+        if (Vector2.Distance(player.transform.position, transform.position) <= eRange.x)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, eSpeed * Time.deltaTime);
+
+        }
+    }
 }
