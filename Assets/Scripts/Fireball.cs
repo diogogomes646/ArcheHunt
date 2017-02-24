@@ -7,7 +7,7 @@ public class Fireball : MonoBehaviour
     public GameObject player;
     private float fSpeed;
     private Vector2 dir;
-
+    public float fireballdamanage;
 	// Use this for initialization
 	void Start ()
     {
@@ -27,4 +27,15 @@ public class Fireball : MonoBehaviour
         transform.Translate(fSpeed * dir * Time.deltaTime);
 
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Enemy")
+        {
+            Destroy(this.gameObject);
+
+           // GameObject.Find("Enemy").GetComponent<Enemy>().takeDamage -= fireballdamanage)
+          
+        }
+    }
 }

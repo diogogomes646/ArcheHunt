@@ -5,13 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private int eHealth;
+    public int eHealth;
     private int eStrenght;
     [SerializeField]
     private float eSpeed;
     private Vector2 eRange;
 
-    private int maxHealth;
+    public int maxHealth;
 
     public GameObject player;
     public GameObject gameManager;
@@ -19,8 +19,9 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        maxHealth = 10;
+        maxHealth = 50;
         eHealth = maxHealth;
+
         eSpeed = 2.0f;
         eRange.Set(10, 10);
     }
@@ -35,8 +36,27 @@ public class Enemy : MonoBehaviour
         }
 
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            GameObject.Find("Player").GetComponent<Player>().health.CurrentValue -= 10;
+          
+        }
+
+    
+    }
+
+    void UpdateHealth()
+    {
+
+    }
     public void takeDamage(int damage)
     {
         eHealth -= damage;
+        UpdateHealth();
     }
+
+
 }

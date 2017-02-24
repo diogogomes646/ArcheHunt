@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+
 public class Player : MonoBehaviour
 {
     private bool mLeft;
@@ -12,8 +12,10 @@ public class Player : MonoBehaviour
     public GameObject fireballPrefab;
     public Transform projSpawn;
 
+
+
     [SerializeField]
-    private Stat health;
+    public Stat health;
 
     [SerializeField]
     private Stat energy;
@@ -89,7 +91,6 @@ public class Player : MonoBehaviour
         
         
     }
-
 
     public void leftDown()
     {
