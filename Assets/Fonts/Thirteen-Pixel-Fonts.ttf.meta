@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2b8c8287532117a4eaea218b51ce145c
-timeCreated: 1481460330
+guid: acd1b6abf2bfe1045b8b346063f8c58a
+timeCreated: 1488114892
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,8 +9,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
+  fontName: Thirteen Pixel Fonts
   fontNames:
-  - Fofer
+  - Thirteen Pixel Fonts
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
