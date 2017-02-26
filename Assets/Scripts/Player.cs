@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
         {
             transform.Translate(playerSpeed * Vector2.left * Time.deltaTime);
             GetComponent<SpriteRenderer>().flipX = false;
+            projSpawn.transform.localPosition.Set(-3.0f, 0, 0);
 
         }
 
@@ -56,7 +57,7 @@ public class Player : MonoBehaviour
         {
             transform.Translate(playerSpeed * Vector2.right * Time.deltaTime);
             GetComponent<SpriteRenderer>().flipX = true;
-            projSpawn.transform.position.Set(3.0f, 0, 0);
+            projSpawn.transform.localPosition.Set(3.0f, 0, 0);
         }
 
     }

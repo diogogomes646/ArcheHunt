@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject player;
     public GameObject gameManager;
+    public GameObject healthBar;
 
     // Use this for initialization
     void Start()
@@ -46,7 +47,6 @@ public class Enemy : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        eHealth -= damage;
     }
 
     void checkHealth()
