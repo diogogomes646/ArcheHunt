@@ -17,6 +17,10 @@ public class Enemy : MonoBehaviour
     public GameObject gameManager;
     public GameObject healthBar;
 
+    public BarScript HealthBar;
+
+    bool canMove = true;
+
     // Use this for initialization
     void Start()
     {
@@ -26,17 +30,22 @@ public class Enemy : MonoBehaviour
 
         eSpeed = 2.0f;
         eRange.Set(10, 10);
+        HealthBar = healthBar.GetComponent<BarScript>();
+        HealthBar.Init(eHealth);
+        //HealthBar.MaxValue = eHealth;// must be set before value
+        //HealthBar.Value = eHealth;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        checkHealth();
+        //checkHealth();
         chasePlayer();
 
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.name == "Player")
         {
@@ -44,9 +53,22 @@ public class Enemy : MonoBehaviour
           
         }
     }
+    
+    private void OnCollisionStay(Collision collision)
+    {
+        canMove = false;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        canMove = true;
+    }
 
     public void takeDamage(int damage)
     {
+        eHealth -= damage;
+        checkHealth();
+        //update bar
+        HealthBar.Value = eHealth;
     }
 
     void checkHealth()
@@ -60,10 +82,13 @@ public class Enemy : MonoBehaviour
 
     private void chasePlayer()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) <= eRange.x)
+        if (canMove)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, eSpeed * Time.deltaTime);
+            if (Vector2.Distance(player.transform.position, transform.position) <= eRange.x)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, eSpeed * Time.deltaTime);
 
+            }
         }
     }
 }

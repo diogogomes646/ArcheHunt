@@ -63,8 +63,18 @@ public class BarScript : MonoBehaviour
     {
         set
         {
+            print("new value is:"+value);
+            print("MaxValue:"+ MaxValue);
+            print( Map(value, 0, MaxValue, 0, 1));
             fillAmount = Map(value, 0, MaxValue, 0, 1);
+           
         }
+    }
+
+    public void Init(float InitHeal)
+    {
+        Value  =MaxValue = InitHeal;
+        
     }
 
     void Start()
@@ -88,8 +98,12 @@ public class BarScript : MonoBehaviour
     /// </summary>
     private void HandleBar()
     {
+
+        print("health bar script update bar");
+        print("fillAmount:"+fillAmount);
         if (fillAmount != content.fillAmount) //If we have a new fill amount then we know that we need to update the bar
         {
+            print("fillamount != content fillamount");
             if (lerpBar)
             {
                 //Lerps the fill amount so that we get a smooth movement
@@ -120,6 +134,9 @@ public class BarScript : MonoBehaviour
     /// <returns></returns>
     private float Map(float value, float inMin, float inMax, float outMin, float outMax)
     {
+
+        //Map(value, 0, MaxValue, 0, 1);
+        //value * 1 / maxvalue
         return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
     }
 }

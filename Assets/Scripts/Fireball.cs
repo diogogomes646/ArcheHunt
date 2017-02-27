@@ -31,7 +31,7 @@ public class Fireball : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.name == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
             other.gameObject.GetComponent<Enemy>().takeDamage(fireballDamage);
             Destroy(this.gameObject);

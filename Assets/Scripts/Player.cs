@@ -19,7 +19,9 @@ public class Player : MonoBehaviour
     private Stat shield;
 
     public GameObject fireballPrefab;
+    private Transform projSpawnDirect;
     public Transform projSpawn;
+    public Transform projSpawn2;
 
     void Awake()
     {
@@ -49,7 +51,7 @@ public class Player : MonoBehaviour
         {
             transform.Translate(playerSpeed * Vector2.left * Time.deltaTime);
             GetComponent<SpriteRenderer>().flipX = false;
-            projSpawn.transform.localPosition.Set(-3.0f, 0, 0);
+            projSpawnDirect = projSpawn;
 
         }
 
@@ -57,7 +59,7 @@ public class Player : MonoBehaviour
         {
             transform.Translate(playerSpeed * Vector2.right * Time.deltaTime);
             GetComponent<SpriteRenderer>().flipX = true;
-            projSpawn.transform.localPosition.Set(3.0f, 0, 0);
+            projSpawnDirect = projSpawn2;
         }
 
     }
@@ -93,7 +95,7 @@ public class Player : MonoBehaviour
     public void Fireball()
     {
 
-        GameObject proj = Instantiate(fireballPrefab, projSpawn.position, projSpawn.rotation);
+        GameObject proj = Instantiate(fireballPrefab, projSpawnDirect.position, projSpawnDirect.rotation);
         Destroy(proj, 2.0f);
     }
 
@@ -115,6 +117,7 @@ public class Player : MonoBehaviour
     public void takeHealth(int damage)
     {
         health.CurrentValue -= damage;
+        print(health.CurrentValue);
     }
 
     public void takeShield(int damage)

@@ -33,7 +33,7 @@ public class Bar : MonoBehaviour
     
     public float MaxValue { get; set; }
 
-    
+
     public float Value
     {
         set
