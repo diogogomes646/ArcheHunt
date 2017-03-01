@@ -29,11 +29,12 @@ public class Enemy : MonoBehaviour
         eStrenght = 10;
 
         eSpeed = 2.0f;
-        eRange.Set(10, 10);
+        eRange.Set(40, 10);
         HealthBar = healthBar.GetComponent<BarScript>();
         HealthBar.Init(eHealth);
         //HealthBar.MaxValue = eHealth;// must be set before value
         //HealthBar.Value = eHealth;
+        player = GameObject.FindGameObjectWithTag("Player");
         
     }
 
@@ -87,7 +88,6 @@ public class Enemy : MonoBehaviour
             if (Vector2.Distance(player.transform.position, transform.position) <= eRange.x)
             {
                 transform.position = Vector2.MoveTowards(transform.position, player.transform.position, eSpeed * Time.deltaTime);
-
             }
         }
     }
